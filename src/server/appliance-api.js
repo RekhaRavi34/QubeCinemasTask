@@ -1,6 +1,8 @@
 import express, { json } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import { data } from './data';
+import data from './data.js';
+
+const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Sample data

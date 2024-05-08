@@ -1,4 +1,4 @@
-export const data = [
+const appliances = [
     {
         serialNo: "JTD-512312",
         theatreName: "Kriplle Square",
@@ -360,3 +360,5 @@ export const data = [
         storage: "1024 GB"
       },
 ];
+
+export default appliances;
