@@ -1,6 +1,7 @@
 import express, { json } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import data from './data.js';
+import cors from 'cors';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,6 +11,7 @@ const appliances = data;
 
 // Middleware
 app.use(json());
+app.use(cors());
 
 // Routes
 // Get all appliances info
