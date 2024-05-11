@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Pagination } from "antd";
 import FirstSection from "../components/HeaderSection"
 import axios from 'axios';
 
@@ -157,7 +156,7 @@ const MainPage = () => {
                                         </li>
                                     ))}
                                     <li>
-                                        <button className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white rounded-e-lg hover:bg-gray-100 hover:text-gray-700" onClick={nextPage} disabled={currentPage === totalPages}><svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                        <button className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white rounded-e-lg hover:bg-gray-100 hover:text-gray-700" onClick={nextPage} disabled={currentPage === totalPages}><svg className="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4" />
                                         </svg></button>
                                     </li>
@@ -186,13 +185,13 @@ const MainPage = () => {
                                             <td className="py-4 text-[#2D3540] "><p>{item.theatreName}</p><p className="text-[#0066cc] py-2">{`${item.location.city}, ${item.location.state}, ${item.location.country}`}</p></td>
                                             <td className="pl-12 py-4 text-[#2D3540]"><p>{item.bandwidth}</p><p className="text-[#69788C] py-2">{item.avgBandwidth}</p></td>
                                             <td className=" py-4 text-[#2D3540]">
-                                                <div class="flex items-center">
-                                                    <div class={`h-2.5 w-2.5 rounded-full me-2 ${item.deviceStatus === "Offline" ? "bg-red-500" : "bg-green-500"}`}></div>{item.deviceStatus}
+                                                <div className="flex items-center">
+                                                    <div className={`h-2.5 w-2.5 rounded-full me-2 ${item.deviceStatus === "Offline" ? "bg-red-500" : "bg-green-500"}`}></div>{item.deviceStatus}
                                                 </div>
                                             </td>
                                             <td className=" py-4 text-[#2D3540]">
-                                                <div class="flex items-center">
-                                                    <div class={`h-2.5 w-2.5 rounded-full  me-2 
+                                                <div className="flex items-center">
+                                                    <div className={`h-2.5 w-2.5 rounded-full  me-2 
                                 ${item.downloadStatus === "Failed" ? "bg-red-500" : ""}
                                 ${item.downloadStatus === "Cancelled" ? "bg-[#ffcc00]" : ""} 
                                 ${item.downloadStatus === "Scheduled" ? "bg-[#bfbfbf]" : ""}
