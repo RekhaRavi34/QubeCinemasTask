@@ -17,7 +17,7 @@ const MainPage = () => {
         downloaded: 0
     });
     const [currentPage, setCurrentPage] = useState(1);
-    const [pageSize, setPageSize] = useState(5); // Change this according to your needs
+    const [pageSize, setPageSize] = useState(10); // Change this according to your needs
 
     // Calculate total pages
     const totalPages = dataLogs ? Math.ceil(dataLogs?.appliances?.length / pageSize) : 0;
@@ -43,6 +43,11 @@ const MainPage = () => {
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     const slicedData = dataLogs?.appliances?.slice(startIndex, endIndex);
+
+    const handlePageSizeChange = (e) => {
+        setPageSize(parseInt(e.target.value));
+        setCurrentPage(1); // Reset current page when changing page size
+    };
 
     const fetchData = async () => {
         try {
@@ -101,6 +106,8 @@ const MainPage = () => {
                             <label htmlFor="dropdown" className="mr-2 self-center text-[#69788C] text-xs">Show</label>
                             <select
                                 id="dropdown"
+                                value={pageSize}
+                                onChange={handlePageSizeChange}
                                 className="border border-gray-300 rounded-md px-2 py-1 w-20 text-xs w-15"
                             >
                                 <option value={10}>10</option>
