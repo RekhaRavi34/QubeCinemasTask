@@ -9,6 +9,8 @@ const MainPage = () => {
 
     const router = useNavigate();
     const [dataLogs, setDataLogs] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
     const [counts, setCounts] = useState({
         failed: 0,
         scheduled: 0,
@@ -19,8 +21,7 @@ const MainPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize, setPageSize] = useState(10); // Change this according to your needs
 
-    // Calculate total pages
-    const totalPages = dataLogs ? Math.ceil(dataLogs?.appliances?.length / pageSize) : 0;
+
 
     // Pagination functions
     const goToPage = (page) => {
@@ -40,13 +41,33 @@ const MainPage = () => {
     };
 
     // Slice data based on current page and page size
+    const totalPages = dataLogs ? Math.ceil(filteredData?.length / pageSize) : '';
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
-    const slicedData = dataLogs?.appliances?.slice(startIndex, endIndex);
+    const slicedData = filteredData?.slice(startIndex, endIndex);
 
     const handlePageSizeChange = (e) => {
         setPageSize(parseInt(e.target.value));
         setCurrentPage(1); // Reset current page when changing page size
+    };
+
+    const filterData = () => {
+        const filtered = dataLogs?.appliances?.filter(appliance =>
+            appliance.serialNo.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            appliance.theatreName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            `${appliance.location.city}, ${appliance.location.state}, ${appliance.location.country}`.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            appliance.bandwidth.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            appliance.avgBandwidth.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            appliance.deviceStatus.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            appliance.downloadStatus.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            appliance.osVersion.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        setFilteredData(filtered);
+        setCurrentPage(1); // Reset to first page after filtering
+    };
+
+    const handleSearch = (e) => {
+        setSearchQuery(e.target.value);
     };
 
     const fetchData = async () => {
@@ -72,6 +93,9 @@ const MainPage = () => {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        filterData();
+    }, [searchQuery, dataLogs]);
 
 
     return (
@@ -85,7 +109,8 @@ const MainPage = () => {
                     <div className="flex flex-row bg-white rounded-md justify-between px-5 py-5" >
                         <div className="flex flex-row ">
                             <div className="relative">
-                                <input type="search" id="search" className="block w-full p-2 pr-16 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 " placeholder="Search" required />
+                                <input type="search" id="search" className="block w-full p-2 pr-16 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 " placeholder="Search" required value={searchQuery}
+                                    onChange={handleSearch} />
                                 <div className="absolute inset-y-0 end-0 flex items-center pr-3 cursor-pointer">
                                     <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />

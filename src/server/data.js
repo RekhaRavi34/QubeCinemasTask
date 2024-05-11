@@ -361,7 +361,7 @@ const appliances = [
       },
       {
         serialNo: "JTD-512332",
-        theatreName: "Kriplle Square",
+        theatreName: "Pvr Square",
         location: {
           city: "New Delhi",
           state: "Delhi",
@@ -379,7 +379,7 @@ const appliances = [
       },
       {
         serialNo: "JTD-512333",
-        theatreName: "City Cinema",
+        theatreName: "Cinema City",
         location: {
           city: "New York",
           state: "New York",
@@ -397,7 +397,7 @@ const appliances = [
       },
       {
         serialNo: "JTD-512334",
-        theatreName: "Cineplex Odeon",
+        theatreName: "Odeon Cineplex",
         location: {
           city: "Toronto",
           state: "Ontario",
