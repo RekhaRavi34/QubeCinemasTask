@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const TableComp = ({ dataLogs }) => {
+const TableSamp = ({ dataLogs }) => {
     const { appliances } = dataLogs;
     const router = useNavigate();
 
@@ -51,4 +51,4 @@ const TableComp = ({ dataLogs }) => {
     )
 }
 
-export default TableComp
+export default TableSamp

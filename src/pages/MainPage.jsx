@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Pagination } from "antd";
 import FirstSection from "../components/FirstSection"
 import axios from 'axios';
-import TableComp from "../components/TableComp";
+import TableSamp from "../components/TableSamp";
 const MainPage = () => {
     const [dataLogs, setDataLogs] = useState([]);
     const [counts, setCounts] = useState({
@@ -81,7 +81,7 @@ const MainPage = () => {
                         </div>
                     </div>
                     <div className="bg-white pt-3">
-                        <TableComp dataLogs={dataLogs} />
+                        <TableSamp dataLogs={dataLogs} />
                     </div>
                 </div>
             </div>

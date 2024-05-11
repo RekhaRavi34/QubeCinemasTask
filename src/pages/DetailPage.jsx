@@ -26,6 +26,13 @@ const DetailPage = ({ }) => {
     }, [deviceId]);
 
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = date.getDate();
+        const suffix = (day === 1 || day === 21 || day === 31) ? "st" : (day === 2 || day === 22) ? "nd" : (day === 3 || day === 23) ? "rd" : "th";
+        const month = date.toLocaleString('default', { month: 'short' });
+        return `${day}${suffix} ${month}`;
+    };
 
     return (
         <div className="max-w-screen h-screen bg-slate-100">
@@ -64,7 +71,7 @@ const DetailPage = ({ }) => {
                     </div>
                 </div>
                 <h4 className='font-sans font-medium text-xl mt-5'>{deviceDetail.theatreName}</h4>
-                <h5 className='font-sans text-[#69788C] font-normal text-l mt-3'>{ }</h5>
+                <h5 className='font-sans text-[#69788C] font-normal text-l mt-3'>{`${deviceDetail.location?.city}, ${deviceDetail.location?.state}, ${deviceDetail.location?.country}`}</h5>
                 <div className='flex flex-row mt-5 font-medium'>
                     <div className="flex items-center text-sm mr-3 bg-slate-100 px-1.5 py-1.5 rounded-full">
                         <span className={`h-3 w-3 rounded-full mr-3  ${deviceDetail.deviceStatus === "Offline" ? "bg-red-500" : "bg-green-500"}`}></span>
@@ -86,17 +93,17 @@ const DetailPage = ({ }) => {
             </div>
             <div className='pt-7 px-7 pb-7'>
                 <div className='bg-white rounded-md px-7 py-7 grid grid-cols-4 gap-6 shadow-md'>
-                    <div><p className='font-medium text-sm'>Device Serial</p><p className=' font-regular text-base'>{deviceDetail.serialNo}a</p></div>
-                    <div><p className='font-medium text-sm'>Location</p><p className=' font-regular text-base'>{deviceDetail.serialNo}</p></div>
-                    <div><p className='font-medium text-sm'>City</p><p className=' font-regular text-base'>{deviceDetail.serialNo}a</p></div>
-                    <div><p className='font-medium text-sm'>ISP Payment Responsibility</p><p className=' font-regular text-base'>{deviceDetail.ispPaymentResponsibility}</p></div>
-                    <div><p className='font-medium text-sm'>Bandwidth</p><p className='  font-regular text-base'>{deviceDetail.bandwidth}</p></div>
-                    <div><p className='font-medium text-sm'>Average Bandwidth</p><p className=' font-regular text-base'>{deviceDetail.avgBandwidth}</p></div>
-                    <div><p className='font-medium text-sm'>Location</p><p className='  font-regular text-base'>{deviceDetail.serialNo}</p></div>
-                    <div><p className='font-medium text-sm'>Plan Start Date</p><p className='  font-regular text-base'>{deviceDetail.planStartDate}</p></div>
-                    <div><p className='font-medium text-sm'>Download Status</p><p className=' font-regular text-base'>{deviceDetail.downloadStatus}</p></div>
-                    <div><p className='font-medium text-sm'>Os Version</p><p className='  font-regular text-base'>{deviceDetail.osVersion}</p></div>
-                    <div><p className='font-medium text-sm'>Storage Available</p><p className=' font-regular text-base'>{deviceDetail.storage}</p></div>
+                    <div><p className='font-medium text-sm'>Device Serial</p><p className=' font-regular text-base mt-2'>{deviceDetail.serialNo}</p></div>
+                    <div><p className='font-medium text-sm'>Theatre</p><p className=' font-regular text-base mt-2'>{deviceDetail.theatreName}</p></div>
+                    <div><p className='font-medium text-sm'>City</p><p className=' font-regular text-base mt-2'>{`${deviceDetail.location?.city}, ${deviceDetail.location?.state}, ${deviceDetail.location?.country}`}</p></div>
+                    <div><p className='font-medium text-sm'>ISP Payment Responsibility</p><p className=' font-regular text-base mt-2'>{deviceDetail.ispPaymentResponsibility}</p></div>
+                    <div><p className='font-medium text-sm'>Bandwidth</p><p className='  font-regular text-base mt-2'>{deviceDetail.bandwidth}</p></div>
+                    <div><p className='font-medium text-sm'>Average Bandwidth</p><p className=' font-regular text-base mt-2'>{deviceDetail.avgBandwidth}</p></div>
+                    <div><p className='font-medium text-sm'>Plan Start Date</p><p className='  font-regular text-base mt-2'>{formatDate(deviceDetail?.planStartDate)}</p></div>
+                    <div><p className='font-medium text-sm'>Billing Cycle</p><p className='  font-regular text-base mt-2'>{deviceDetail.billingCycle}</p></div>
+                    <div><p className='font-medium text-sm'>Download Status</p><p className=' font-regular text-base mt-2'>{deviceDetail.downloadStatus}</p></div>
+                    <div><p className='font-medium text-sm'>Os Version</p><p className='  font-regular text-base mt-2'>{deviceDetail.osVersion}</p></div>
+                    <div><p className='font-medium text-sm'>Storage Available</p><p className=' font-regular text-base mt-2'>{deviceDetail.storage}</p></div>
                 </div>
             </div>
         </div>

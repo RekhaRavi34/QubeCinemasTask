@@ -21,7 +21,7 @@ const FirstSection = ({ counts }) => {
                     <span>{counts.downloading} Downloading</span>
                 </div>
                 <div className="flex items-center text-sm mr-6">
-                    <span className="h-2 w-2 bg-[#008000] rounded-full mr-3"></span>
+                    <span className="h-2 w-2 bg-green-500 rounded-full mr-3"></span>
                     <span>{counts.downloaded} Downloaded</span>
                 </div>
             </div>
