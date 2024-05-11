@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Pagination } from "antd";
-import FirstSection from "../components/FirstSection"
+import FirstSection from "../components/HeaderSection"
 import axios from 'axios';
 
 import { useNavigate } from 'react-router-dom';
@@ -163,7 +163,6 @@ const MainPage = () => {
                                     </li>
                                 </ul>
                             </nav>
-
                         </div>
                     </div>
                     <div className="bg-white pt-3">
