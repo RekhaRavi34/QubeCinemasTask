@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const DetailPage = ({ }) => {
+    
     const { deviceId } = useParams();
 
     const [deviceDetail, setSetDeviceDetail] = useState({});
